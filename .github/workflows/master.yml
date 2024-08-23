@@ -29,7 +29,7 @@ jobs:
             echo "Prepping new release"
             BUILD_VERSION=${VERSION%-SNAPSHOT}
             echo $BUILD_VERSION
-          
+            echo "BUILD_VERSION=$(BUILD_VERSION)" >> $GITHUB_ENV
             git config --global user.email "info@example.com"
             git config --global user.name "Maven Release Plugin"
           
@@ -41,14 +41,13 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "RELEASE_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)" >> $GITHUB_ENV
       - run: echo "ARTIFACT_JAR_FILE=$(ls oc-sso-notificatie/target/*.jar | xargs basename)" >> $GITHUB_ENV
       - run: echo "ARTIFACT_FILE_NAME=$(ls oc-sso-notificatie/target/*.jar | xargs basename | sed 's/\.[^.]*$//')" >> $GITHUB_ENV
       - run: echo "ARTIFACT_PATH=$(ls oc-sso-notificatie/target/*.jar)" >> $GITHUB_ENV
-      - run: echo $RELEASE_VERSION
       - run: echo ARTIFACT_JAR_FILE
       - run: echo ARTIFACT_FILE_NAME
       - run: echo ARTIFACT_PATH
+      - run: echo BUILD_VERSION
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.ARTIFACT_FILE_NAME }}
@@ -59,8 +58,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: Release ${{ env.RELEASE_VERSION }}
+          tag_name: ${{ env.BUILD_VERSION }}
+          release_name: Release ${{ env.BUILD_VERSION }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
