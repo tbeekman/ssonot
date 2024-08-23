@@ -31,7 +31,8 @@
     <description>OpenConext SSO Notification as a separate Service.</description>
 
     <scm>
-        <developerConnection>scm:git:git@github.com:tbeekman/ssonot.git</developerConnection>
+        <url>https://github.com/tbeekman/ssonot</url>
+        <developerConnection>scm:git:https://github.com/tbeekman/ssonot.git</developerConnection>
       <tag>HEAD</tag>
   </scm>
 
