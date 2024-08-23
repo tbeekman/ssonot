@@ -27,9 +27,10 @@ jobs:
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           if [[ "$VERSION" == *SNAPSHOT ]]; then
             echo "Prepping new release"
+            echo $VERSION
+            BUILD_VERSION=${$VERSION/-SNAPSHOT/}
             echo $BUILD_VERSION
-            BUILD_VERSION=${BUILD_VERSION/-SNAPSHOT/}
-            echo $BUILD_VERSION
+            echo $VERSION
             
             
             
