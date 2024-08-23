@@ -119,9 +119,10 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>${maven.release.version}</version>
                 <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                     <releaseProfiles>release</releaseProfiles>
                     <remoteTagging>true</remoteTagging>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
                 <dependencies>
                     <dependency>
