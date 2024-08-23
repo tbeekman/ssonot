@@ -22,7 +22,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: maven
-      - run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
       - name: Build with Maven and publish package
         run: |
 #          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
