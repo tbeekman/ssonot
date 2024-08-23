@@ -23,16 +23,15 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
-      - run: echo "BV=${VERSION%-SNAPSHOT}" >> $GITHUB_ENV
+      - run: echo "BUILD_VERSION=${VERSION%-SNAPSHOT}" >> $GITHUB_ENV
       - name: Build with Maven and publish package
         run: |
           echo $VERSION
-          echo $BV
+          echo $BUILD_VERSION
           if [[ "$VERSION" == *SNAPSHOT ]]; then
             echo "Prepping new release"
-            BUILD_VERSION=${VERSION%-SNAPSHOT}
             echo $BUILD_VERSION
-            echo "BUILD_VERSION=$(BUILD_VERSION)" >> $GITHUB_ENV
+
             git config --global user.email "info@example.com"
             git config --global user.name "Maven Release Plugin"
           
