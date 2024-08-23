@@ -28,9 +28,9 @@ jobs:
           if [[ "$VERSION" == *SNAPSHOT ]]; then
             echo "Prepping new release"            
             
-            BUILD_VERSION=${VERSION%-SNAPSHOT}
-            
-            echo $BUILD_VERSION
+#            BUILD_VERSION=${VERSION%-SNAPSHOT}
+#
+#            echo $BUILD_VERSION
             echo $VERSION
 
 #            echo "BV=${{ env.VERSION%-SNAPSHOT }}" >> $GITHUB_ENV
