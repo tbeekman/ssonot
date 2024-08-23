@@ -33,7 +33,7 @@ jobs:
             git config --global user.email "info@example.com"
             git config --global user.name "Maven Release Plugin"
           
-            mvn -B clean release:prepare release:perform -Prelease -DreleaseVersion=$BUILD_VERSION -Dresume=false -DautoVersionSubmodules=true -DdryRun=false -Dmaven.deploy.skip=true -Dmaven.test.skip=true -DskipITs -DscmCommentPrefix="[maven-release-plugin][ci skip] " -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+            mvn -B clean release:prepare release:perform -Prelease -DreleaseVersion=$BUILD_VERSION -Dresume=false -DautoVersionSubmodules=true -DdryRun=false -Dmaven.test.skip=true -DskipITs -DscmCommentPrefix="[maven-release-plugin][ci skip] " -Djdk.net.URLClassPath.disableClassPathURLCheck=true
           
           else
             echo "Version is not valid, failing the workflow."
