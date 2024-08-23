@@ -32,13 +32,13 @@ jobs:
             
             echo $BUILD_VERSION
             echo $VERSION
-            
-            echo "BV=${{ env.VERSION%-SNAPSHOT }}" >> $GITHUB_ENV
-            echo $BV
-            
-            BUILD_VERSION2=${{ env.VERSION%-SNAPSHOT }}
-            echo $BUILD_VERSION2
-          
+#
+#            echo "BV=${{ env.VERSION%-SNAPSHOT }}" >> $GITHUB_ENV
+#            echo $BV
+#
+#            BUILD_VERSION2=${{ env.VERSION%-SNAPSHOT }}
+#            echo $BUILD_VERSION2
+#
           
             
             echo "Version contains SNAPSHOT, failing the workflow!"
