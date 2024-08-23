@@ -30,6 +30,9 @@ jobs:
             BUILD_VERSION=${VERSION%-SNAPSHOT}
             echo $BUILD_VERSION
           
+            git config --global user.email "info@example.com"
+            git config --global user.name "Maven Release Plugin"
+          
             mvn -B clean release:prepare release:perform -Prelease -DreleaseVersion=$BUILD_VERSION -Dresume=false -DautoVersionSubmodules=true -DdryRun=false -Dmaven.test.skip=true -DskipITs -DscmCommentPrefix="[maven-release-plugin][ci skip] " -Djdk.net.URLClassPath.disableClassPathURLCheck=true
           
           else
