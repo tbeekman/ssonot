@@ -122,7 +122,7 @@
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <releaseProfiles>release</releaseProfiles>
                     <remoteTagging>true</remoteTagging>
-                    <tagNameFormat>${BUILD_VERSION}</tagNameFormat>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
                 <dependencies>
                     <dependency>
