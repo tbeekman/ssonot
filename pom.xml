@@ -30,6 +30,10 @@
     <name>OC SSO Notification</name>
     <description>OpenConext SSO Notification as a separate Service.</description>
 
+    <scm>
+        <developerConnection>scm:git:git@github.com:tbeekman/ssonot.git</developerConnection>
+    </scm>
+
     <inceptionYear>2021</inceptionYear>
 
     <properties>

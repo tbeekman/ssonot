@@ -22,16 +22,20 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: maven
+      - run: echo "BV=${VERSION%-SNAPSHOT}" >> $GITHUB_ENV
       - name: Fail build if version contains SNAPSHOT
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           if [[ "$VERSION" == *SNAPSHOT ]]; then
             echo "Prepping new release"
+            echo "---"
+            echo $BV
+            echo "---"
             echo $VERSION
             BUILD_VERSION=${VERSION%-SNAPSHOT}
             echo $BUILD_VERSION
           
-          
+            
           
             echo "Version contains SNAPSHOT, failing the workflow!"
             exit 1
