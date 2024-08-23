@@ -22,9 +22,13 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: maven
+      - run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+      - run: echo "BV=${VERSION%-SNAPSHOT}" >> $GITHUB_ENV
       - name: Build with Maven and publish package
         run: |
-          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+#          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo $VERSION
+          echo $BV
           if [[ "$VERSION" == *SNAPSHOT ]]; then
             echo "Prepping new release"
             BUILD_VERSION=${VERSION%-SNAPSHOT}
@@ -44,10 +48,10 @@ jobs:
       - run: echo "ARTIFACT_JAR_FILE=$(ls oc-sso-notificatie/target/*.jar | xargs basename)" >> $GITHUB_ENV
       - run: echo "ARTIFACT_FILE_NAME=$(ls oc-sso-notificatie/target/*.jar | xargs basename | sed 's/\.[^.]*$//')" >> $GITHUB_ENV
       - run: echo "ARTIFACT_PATH=$(ls oc-sso-notificatie/target/*.jar)" >> $GITHUB_ENV
-      - run: echo ARTIFACT_JAR_FILE
-      - run: echo ARTIFACT_FILE_NAME
-      - run: echo ARTIFACT_PATH
-      - run: echo BUILD_VERSION
+      - run: echo $ARTIFACT_JAR_FILE
+      - run: echo $ARTIFACT_FILE_NAME
+      - run: echo $ARTIFACT_PATH
+      - run: echo $BUILD_VERSION
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.ARTIFACT_FILE_NAME }}
