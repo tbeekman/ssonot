@@ -23,7 +23,6 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
-      - run: echo "BV=${VERSION%-SNAPSHOT}" >> $GITHUB_ENV
       - name: Build with Maven and publish package
         run: |
 #          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
@@ -31,6 +30,9 @@ jobs:
           echo $BV
           if [[ "$VERSION" == *SNAPSHOT ]]; then
             echo "Prepping new release"
+               
+            echo "BUILD_VERSION=${VERSION%-SNAPSHOT}" >> $GITHUB_ENV
+               
             BUILD_VERSION=${VERSION%-SNAPSHOT}
             echo $BUILD_VERSION
             echo "BUILD_VERSION=$(BUILD_VERSION)" >> $GITHUB_ENV
